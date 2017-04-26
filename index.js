@@ -34,8 +34,10 @@ bot.dialog('/', [
     function(session) {
         session.beginDialog('./keepVariable2');
     },
-    function(session, results) {
+    function(session, results, var1, var2) {
         session.send('Hello %s!', results.response);
+        session.send('Your first number %d!', var1.response);
+        session.send('Your second number %d!', var2.response);
     }
 ]);
 bot.dialog('/askName', [
@@ -50,16 +52,16 @@ bot.dialog('/keepVariable1', [
     function(session) {
         builder.Prompts.text(session, 'What is your first number ?');
     },
-    function(session, results) {
-        session.endDialogWithResult(results);
+    function(session, var1) {
+        session.endDialogWithResult(var1);
     }
 ]);
 bot.dialog('/keepVariable2', [
     function(session) {
         builder.Prompts.text(session, 'What is your second Number ?');
     },
-    function(session, results) {
-        session.endDialogWithResult(results);
+    function(session, var2) {
+        session.endDialogWithResult(var2);
     }
 ]);
 
