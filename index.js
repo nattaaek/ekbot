@@ -28,6 +28,12 @@ bot.dialog('/', [
     function(session) {
         session.beginDialog('/askName');
     },
+    function(session) {
+        session.beginDialog('/keepVariable1');
+    },
+    function(session) {
+        session.beginDialog('./keepVariable2');
+    },
     function(session, results) {
         session.send('Hello %s!', results.response);
     }
@@ -35,6 +41,22 @@ bot.dialog('/', [
 bot.dialog('/askName', [
     function(session) {
         builder.Prompts.text(session, 'Hi! What is your name?');
+    },
+    function(session, results) {
+        session.endDialogWithResult(results);
+    }
+]);
+bot.dialog('/keepVariable1', [
+    function(session) {
+        builder.Prompts.text(session, 'What is your first number ?');
+    },
+    function(session, results) {
+        session.endDialogWithResult(results);
+    }
+]);
+bot.dialog('/keepVariable2', [
+    function(session) {
+        builder.Prompts.text(session, 'What is your second Number ?');
     },
     function(session, results) {
         session.endDialogWithResult(results);
