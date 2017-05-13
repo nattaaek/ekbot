@@ -28,16 +28,8 @@ bot.dialog('/', [
     function(session) {
         session.beginDialog('/askName');
     },
-    function(session) {
-        session.beginDialog('/keepVariable1');
-    },
-    function(session) {
-        session.beginDialog('./keepVariable2');
-    },
-    function(session, results, var1, var2) {
+    function(session, results) {
         session.send('Hello %s!', results.response);
-        session.send('Your first number %d!', var1.response);
-        session.send('Your second number %d!', var2.response);
     }
 ]);
 bot.dialog('/askName', [
@@ -48,22 +40,7 @@ bot.dialog('/askName', [
         session.endDialogWithResult(results);
     }
 ]);
-bot.dialog('/keepVariable1', [
-    function(session) {
-        builder.Prompts.text(session, 'What is your first number ?');
-    },
-    function(session, var1) {
-        session.endDialogWithResult(var1);
-    }
-]);
-bot.dialog('/keepVariable2', [
-    function(session) {
-        builder.Prompts.text(session, 'What is your second Number ?');
-    },
-    function(session, var2) {
-        session.endDialogWithResult(var2);
-    }
-]);
+
 
 //osXabmvhMocobHR2MxRTAVa  1431157463615111 62cffb9caed7d9cbc1091f81667644f8
 
